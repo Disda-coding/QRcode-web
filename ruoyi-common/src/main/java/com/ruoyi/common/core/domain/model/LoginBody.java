@@ -27,6 +27,7 @@ public class LoginBody
      */
     private String uuid;
 
+
     public String getUsername()
     {
         return username;
