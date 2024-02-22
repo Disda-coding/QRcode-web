@@ -1,11 +1,12 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
+import com.ruoyi.ledger.domain.LedgerDevDetails;
+import com.ruoyi.ledger.mapper.LedgerDevDetailsMapper;
+import com.ruoyi.ledger.service.ILedgerDevDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerDevDetailsMapper;
-import com.ruoyi.ledger.domain.LedgerDevDetails;
-import com.ruoyi.ledger.service.ILedgerDevDetailsService;
+
+import java.util.List;
 
 /**
  * 设备详情Service业务层处理
@@ -14,7 +15,7 @@ import com.ruoyi.ledger.service.ILedgerDevDetailsService;
  * @date 2024-02-22
  */
 @Service
-public class LedgerDevDetailsServiceImpl implements ILedgerDevDetailsService 
+public class LedgerDevDetailsServiceImpl implements ILedgerDevDetailsService
 {
     @Autowired
     private LedgerDevDetailsMapper ledgerDevDetailsMapper;
@@ -89,5 +90,11 @@ public class LedgerDevDetailsServiceImpl implements ILedgerDevDetailsService
     public int deleteLedgerDevDetailsById(Long id)
     {
         return ledgerDevDetailsMapper.deleteLedgerDevDetailsById(id);
+    }
+
+    @Override
+    public List<String> getDevTypeOps() {
+        List<String> uniqueDevType = ledgerDevDetailsMapper.getDevTypeOpsgetDevTypeOps();
+        return uniqueDevType;
     }
 }

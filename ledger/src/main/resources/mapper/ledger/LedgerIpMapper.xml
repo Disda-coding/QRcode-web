@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ledger.mapper.LedgerIpMapper">
+    
+    <resultMap type="LedgerIp" id="LedgerIpResult">
+        <result property="id"    column="id"    />
+        <result property="ipAddr"    column="ip_addr"    />
+        <result property="type"    column="type"    />
+        <result property="devId"    column="dev_id"    />
+    </resultMap>
+
+    <sql id="selectLedgerIpVo">
+        select id, ip_addr, type, dev_id from ledger_ip
+    </sql>
+
+    <select id="selectLedgerIpList" parameterType="LedgerIp" resultMap="LedgerIpResult">
+        <include refid="selectLedgerIpVo"/>
+        <where>  
+            <if test="ipAddr != null  and ipAddr != ''"> and ip_addr = #{ipAddr}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="devId != null "> and dev_id = #{devId}</if>
+        </where>
+    </select>
+    
+    <select id="selectLedgerIpById" parameterType="Long" resultMap="LedgerIpResult">
+        <include refid="selectLedgerIpVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLedgerIp" parameterType="LedgerIp" useGeneratedKeys="true" keyProperty="id">
+        insert into ledger_ip
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ipAddr != null">ip_addr,</if>
+            <if test="type != null">type,</if>
+            <if test="devId != null">dev_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ipAddr != null">#{ipAddr},</if>
+            <if test="type != null">#{type},</if>
+            <if test="devId != null">#{devId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLedgerIp" parameterType="LedgerIp">
+        update ledger_ip
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ipAddr != null">ip_addr = #{ipAddr},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="devId != null">dev_id = #{devId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLedgerIpById" parameterType="Long">
+        delete from ledger_ip where id = #{id}
+    </delete>
+
+    <delete id="deleteLedgerIpByIds" parameterType="String">
+        delete from ledger_ip where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

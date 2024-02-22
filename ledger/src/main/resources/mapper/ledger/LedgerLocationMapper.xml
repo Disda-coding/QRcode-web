@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ledger.mapper.LedgerLocationMapper">
+    
+    <resultMap type="LedgerLocation" id="LedgerLocationResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+    </resultMap>
+
+    <sql id="selectLedgerLocationVo">
+        select id, name from ledger_location
+    </sql>
+
+    <select id="selectLedgerLocationList" parameterType="LedgerLocation" resultMap="LedgerLocationResult">
+        <include refid="selectLedgerLocationVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectLedgerLocationById" parameterType="Long" resultMap="LedgerLocationResult">
+        <include refid="selectLedgerLocationVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLedgerLocation" parameterType="LedgerLocation" useGeneratedKeys="true" keyProperty="id">
+        insert into ledger_location
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLedgerLocation" parameterType="LedgerLocation">
+        update ledger_location
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLedgerLocationById" parameterType="Long">
+        delete from ledger_location where id = #{id}
+    </delete>
+
+    <delete id="deleteLedgerLocationByIds" parameterType="String">
+        delete from ledger_location where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

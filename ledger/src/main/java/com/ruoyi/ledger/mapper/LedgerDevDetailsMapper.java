@@ -1,7 +1,8 @@
 package com.ruoyi.ledger.mapper;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerDevDetails;
+
+import java.util.List;
 
 /**
  * 设备详情Mapper接口
@@ -58,4 +59,6 @@ public interface LedgerDevDetailsMapper
      * @return 结果
      */
     public int deleteLedgerDevDetailsByIds(Long[] ids);
+
+    public List<String> getDevTypeOpsgetDevTypeOps();
 }

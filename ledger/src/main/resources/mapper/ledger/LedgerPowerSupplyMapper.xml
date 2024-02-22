@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ledger.mapper.LedgerPowerSupplyMapper">
+    
+    <resultMap type="LedgerPowerSupply" id="LedgerPowerSupplyResult">
+        <result property="id"    column="id"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectLedgerPowerSupplyVo">
+        select id, status from ledger_power_supply
+    </sql>
+
+    <select id="selectLedgerPowerSupplyList" parameterType="LedgerPowerSupply" resultMap="LedgerPowerSupplyResult">
+        <include refid="selectLedgerPowerSupplyVo"/>
+        <where>  
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectLedgerPowerSupplyById" parameterType="Long" resultMap="LedgerPowerSupplyResult">
+        <include refid="selectLedgerPowerSupplyVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLedgerPowerSupply" parameterType="LedgerPowerSupply" useGeneratedKeys="true" keyProperty="id">
+        insert into ledger_power_supply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLedgerPowerSupply" parameterType="LedgerPowerSupply">
+        update ledger_power_supply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLedgerPowerSupplyById" parameterType="Long">
+        delete from ledger_power_supply where id = #{id}
+    </delete>
+
+    <delete id="deleteLedgerPowerSupplyByIds" parameterType="String">
+        delete from ledger_power_supply where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

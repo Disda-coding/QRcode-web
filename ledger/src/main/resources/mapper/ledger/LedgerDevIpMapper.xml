@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ledger.mapper.LedgerDevIpMapper">
+    
+    <resultMap type="LedgerDevIp" id="LedgerDevIpResult">
+        <result property="id"    column="id"    />
+        <result property="devId"    column="dev_id"    />
+        <result property="ipId"    column="ip_id"    />
+    </resultMap>
+
+    <sql id="selectLedgerDevIpVo">
+        select id, dev_id, ip_id from ledger_dev_ip
+    </sql>
+
+    <select id="selectLedgerDevIpList" parameterType="LedgerDevIp" resultMap="LedgerDevIpResult">
+        <include refid="selectLedgerDevIpVo"/>
+        <where>  
+            <if test="devId != null "> and dev_id = #{devId}</if>
+            <if test="ipId != null "> and ip_id = #{ipId}</if>
+        </where>
+    </select>
+    
+    <select id="selectLedgerDevIpById" parameterType="Long" resultMap="LedgerDevIpResult">
+        <include refid="selectLedgerDevIpVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLedgerDevIp" parameterType="LedgerDevIp" useGeneratedKeys="true" keyProperty="id">
+        insert into ledger_dev_ip
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="devId != null">dev_id,</if>
+            <if test="ipId != null">ip_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="devId != null">#{devId},</if>
+            <if test="ipId != null">#{ipId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLedgerDevIp" parameterType="LedgerDevIp">
+        update ledger_dev_ip
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="devId != null">dev_id = #{devId},</if>
+            <if test="ipId != null">ip_id = #{ipId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLedgerDevIpById" parameterType="Long">
+        delete from ledger_dev_ip where id = #{id}
+    </delete>
+
+    <delete id="deleteLedgerDevIpByIds" parameterType="String">
+        delete from ledger_dev_ip where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
