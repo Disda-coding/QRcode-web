@@ -49,6 +49,12 @@
             <artifactId>ruoyi-framework</artifactId>
         </dependency>
 
+        <!-- 台账管理-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ledger</artifactId>
+        </dependency>
+
         <!-- 定时任务-->
         <dependency>
             <groupId>com.ruoyi</groupId>

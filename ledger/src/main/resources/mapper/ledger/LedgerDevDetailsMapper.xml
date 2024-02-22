@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ledger.mapper.LedgerDevDetailsMapper">
+    
+    <resultMap type="LedgerDevDetails" id="LedgerDevDetailsResult">
+        <result property="id"    column="id"    />
+        <result property="devType"    column="dev_type"    />
+        <result property="devModel"    column="dev_model"    />
+    </resultMap>
+
+    <sql id="selectLedgerDevDetailsVo">
+        select id, dev_type, dev_model from ledger_dev_details
+    </sql>
+
+    <select id="selectLedgerDevDetailsList" parameterType="LedgerDevDetails" resultMap="LedgerDevDetailsResult">
+        <include refid="selectLedgerDevDetailsVo"/>
+        <where>  
+            <if test="devType != null  and devType != ''"> and dev_type like concat('%', #{devType}, '%')</if>
+            <if test="devModel != null  and devModel != ''"> and dev_model like concat('%', #{devModel}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectLedgerDevDetailsById" parameterType="Long" resultMap="LedgerDevDetailsResult">
+        <include refid="selectLedgerDevDetailsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLedgerDevDetails" parameterType="LedgerDevDetails" useGeneratedKeys="true" keyProperty="id">
+        insert into ledger_dev_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="devType != null">dev_type,</if>
+            <if test="devModel != null">dev_model,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="devType != null">#{devType},</if>
+            <if test="devModel != null">#{devModel},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLedgerDevDetails" parameterType="LedgerDevDetails">
+        update ledger_dev_details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="devType != null">dev_type = #{devType},</if>
+            <if test="devModel != null">dev_model = #{devModel},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLedgerDevDetailsById" parameterType="Long">
+        delete from ledger_dev_details where id = #{id}
+    </delete>
+
+    <delete id="deleteLedgerDevDetailsByIds" parameterType="String">
+        delete from ledger_dev_details where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
