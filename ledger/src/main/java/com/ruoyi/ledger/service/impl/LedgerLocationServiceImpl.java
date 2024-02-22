@@ -1,11 +1,12 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
+import com.ruoyi.ledger.domain.LedgerLocation;
+import com.ruoyi.ledger.mapper.LedgerLocationMapper;
+import com.ruoyi.ledger.service.ILedgerLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerLocationMapper;
-import com.ruoyi.ledger.domain.LedgerLocation;
-import com.ruoyi.ledger.service.ILedgerLocationService;
+
+import java.util.List;
 
 /**
  * 机柜地址Service业务层处理
@@ -89,5 +90,11 @@ public class LedgerLocationServiceImpl implements ILedgerLocationService
     public int deleteLedgerLocationById(Long id)
     {
         return ledgerLocationMapper.deleteLedgerLocationById(id);
+    }
+
+    @Override
+    public List<String> getLocationOps() {
+        List<String> uniqueLocOps = ledgerLocationMapper.getLocationOps();
+        return uniqueLocOps;
     }
 }

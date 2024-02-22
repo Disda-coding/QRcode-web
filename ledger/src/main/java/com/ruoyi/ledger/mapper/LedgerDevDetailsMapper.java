@@ -60,5 +60,7 @@ public interface LedgerDevDetailsMapper
      */
     public int deleteLedgerDevDetailsByIds(Long[] ids);
 
-    public List<String> getDevTypeOpsgetDevTypeOps();
+    public List<String> getDevTypeOps();
+
+    public List<String> getDevModelOps();
 }

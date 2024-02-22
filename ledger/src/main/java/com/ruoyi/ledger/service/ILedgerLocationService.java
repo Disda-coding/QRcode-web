@@ -1,7 +1,8 @@
 package com.ruoyi.ledger.service;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerLocation;
+
+import java.util.List;
 
 /**
  * 机柜地址Service接口
@@ -58,4 +59,10 @@ public interface ILedgerLocationService
      * @return 结果
      */
     public int deleteLedgerLocationById(Long id);
+
+    /**
+     * 获取机柜信息
+     * @return
+     */
+    List<String> getLocationOps();
 }

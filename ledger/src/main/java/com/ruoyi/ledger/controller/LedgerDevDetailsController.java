@@ -28,6 +28,27 @@ public class LedgerDevDetailsController extends BaseController
     @Autowired
     private ILedgerDevDetailsService ledgerDevDetailsService;
 
+    /***
+     * 查询所有设备类型列表值
+     * @return
+     */
+    @PreAuthorize("@ss.hasPermi('ledger:deviceDetails:query')")
+    @GetMapping(value = "/getDevTypeOps")
+    public AjaxResult getDevTypeOps()
+    {
+        return success(ledgerDevDetailsService.getDevTypeOps());
+    }
+
+    /***
+     * 查询所有设备型号列表值
+     * @return
+     */
+    @PreAuthorize("@ss.hasPermi('ledger:deviceDetails:query')")
+    @GetMapping(value = "/getDevModelOps")
+    public AjaxResult getDevModelOps()
+    {
+        return success(ledgerDevDetailsService.getDevModelOps());
+    }
     /**
      * 查询设备详情列表
      */
@@ -63,12 +84,7 @@ public class LedgerDevDetailsController extends BaseController
         return success(ledgerDevDetailsService.selectLedgerDevDetailsById(id));
     }
 
-    @PreAuthorize("@ss.hasPermi('ledger:deviceDetails:query')")
-    @GetMapping(value = "/getDevTypeOps")
-    public AjaxResult getDevTypeOps()
-    {
-        return success(ledgerDevDetailsService.getDevTypeOps());
-    }
+
     /**
      * 新增设备详情
      */

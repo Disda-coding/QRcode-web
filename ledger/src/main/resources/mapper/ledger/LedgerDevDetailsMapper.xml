@@ -26,8 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectLedgerDevDetailsVo"/>
         where id = #{id}
     </select>
-    <select id="getDevTypeOpsgetDevTypeOps" resultType="java.lang.String">
+    <select id="getDevTypeOps" resultType="java.lang.String">
         SELECT DISTINCT dev_type
+        FROM ledger_dev_details
+    </select>
+    <select id="getDevModelOps" resultType="java.lang.String">
+        SELECT DISTINCT dev_model
         FROM ledger_dev_details
     </select>
 

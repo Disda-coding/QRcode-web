@@ -1,7 +1,8 @@
 package com.ruoyi.ledger.mapper;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerLocation;
+
+import java.util.List;
 
 /**
  * 机柜地址Mapper接口
@@ -58,4 +59,6 @@ public interface LedgerLocationMapper
      * @return 结果
      */
     public int deleteLedgerLocationByIds(Long[] ids);
+
+    List<String> getLocationOps();
 }

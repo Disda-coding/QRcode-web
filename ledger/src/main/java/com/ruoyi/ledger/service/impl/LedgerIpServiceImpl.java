@@ -1,29 +1,30 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
+import com.ruoyi.ledger.domain.LedgerIp;
+import com.ruoyi.ledger.mapper.LedgerIpMapper;
+import com.ruoyi.ledger.service.ILedgerIpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerIpMapper;
-import com.ruoyi.ledger.domain.LedgerIp;
-import com.ruoyi.ledger.service.ILedgerIpService;
+
+import java.util.List;
 
 /**
- * ip地址Service业务层处理
- * 
+ * IP地址详情Service业务层处理
+ *
  * @author disda
  * @date 2024-02-22
  */
 @Service
-public class LedgerIpServiceImpl implements ILedgerIpService 
+public class LedgerIpServiceImpl implements ILedgerIpService
 {
     @Autowired
     private LedgerIpMapper ledgerIpMapper;
 
     /**
-     * 查询ip地址
-     * 
-     * @param id ip地址主键
-     * @return ip地址
+     * 查询IP地址详情
+     *
+     * @param id IP地址详情主键
+     * @return IP地址详情
      */
     @Override
     public LedgerIp selectLedgerIpById(Long id)
@@ -32,10 +33,10 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     }
 
     /**
-     * 查询ip地址列表
-     * 
-     * @param ledgerIp ip地址
-     * @return ip地址
+     * 查询IP地址详情列表
+     *
+     * @param ledgerIp IP地址详情
+     * @return IP地址详情
      */
     @Override
     public List<LedgerIp> selectLedgerIpList(LedgerIp ledgerIp)
@@ -44,9 +45,9 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     }
 
     /**
-     * 新增ip地址
-     * 
-     * @param ledgerIp ip地址
+     * 新增IP地址详情
+     *
+     * @param ledgerIp IP地址详情
      * @return 结果
      */
     @Override
@@ -56,9 +57,9 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     }
 
     /**
-     * 修改ip地址
-     * 
-     * @param ledgerIp ip地址
+     * 修改IP地址详情
+     *
+     * @param ledgerIp IP地址详情
      * @return 结果
      */
     @Override
@@ -68,9 +69,9 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     }
 
     /**
-     * 批量删除ip地址
-     * 
-     * @param ids 需要删除的ip地址主键
+     * 批量删除IP地址详情
+     *
+     * @param ids 需要删除的IP地址详情主键
      * @return 结果
      */
     @Override
@@ -80,9 +81,9 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     }
 
     /**
-     * 删除ip地址信息
-     * 
-     * @param id ip地址主键
+     * 删除IP地址详情信息
+     *
+     * @param id IP地址详情主键
      * @return 结果
      */
     @Override

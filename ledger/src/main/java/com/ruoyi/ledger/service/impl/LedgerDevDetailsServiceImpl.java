@@ -94,7 +94,13 @@ public class LedgerDevDetailsServiceImpl implements ILedgerDevDetailsService
 
     @Override
     public List<String> getDevTypeOps() {
-        List<String> uniqueDevType = ledgerDevDetailsMapper.getDevTypeOpsgetDevTypeOps();
+        List<String> uniqueDevType = ledgerDevDetailsMapper.getDevTypeOps();
         return uniqueDevType;
+    }
+
+    @Override
+    public List<String> getDevModelOps() {
+        List<String> uniqueDevModel = ledgerDevDetailsMapper.getDevModelOps();
+        return uniqueDevModel;
     }
 }

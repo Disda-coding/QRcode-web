@@ -60,5 +60,14 @@ public interface ILedgerDevDetailsService
      */
     public int deleteLedgerDevDetailsById(Long id);
 
+    /**
+     * 获取设备类型的列表
+     * @return
+     */
     List<String> getDevTypeOps();
+    /**
+     * 获取设备型号的列表
+     * @return
+     */
+    List<String> getDevModelOps();
 }
