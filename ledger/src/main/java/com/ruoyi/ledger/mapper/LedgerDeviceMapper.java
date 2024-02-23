@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.mapper;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerDevice;
+import com.ruoyi.ledger.domain.vo.LedgerDeviceVO;
+
+import java.util.List;
 
 /**
  * 设备信息Mapper接口
@@ -58,4 +60,6 @@ public interface LedgerDeviceMapper
      * @return 结果
      */
     public int deleteLedgerDeviceByIds(Long[] ids);
+
+    public List<LedgerDeviceVO> getLedgerDeviceInfo();
 }

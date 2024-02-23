@@ -91,4 +91,10 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     {
         return ledgerIpMapper.deleteLedgerIpById(id);
     }
+
+    @Override
+    public List<String> getIpTypeOps() {
+        List<String> uniqueIpTypeOps = ledgerIpMapper.getIpTypeOps();
+        return uniqueIpTypeOps;
+    }
 }

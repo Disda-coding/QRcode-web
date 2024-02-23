@@ -59,4 +59,6 @@ public interface LedgerIpMapper
      * @return 结果
      */
     public int deleteLedgerIpByIds(Long[] ids);
+
+    List<String> getIpTypeOps();
 }

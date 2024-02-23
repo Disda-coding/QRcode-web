@@ -46,8 +46,8 @@ spring:
         allow:
         url-pattern: /druid/*
         # 控制台管理用户名和密码
-        login-username: ruoyi
-        login-password: 123456
+        login-username: root
+        login-password: 111111
       filter:
         stat:
           enabled: true

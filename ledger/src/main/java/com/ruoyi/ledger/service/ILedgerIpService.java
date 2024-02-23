@@ -1,7 +1,8 @@
 package com.ruoyi.ledger.service;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerIp;
+
+import java.util.List;
 
 /**
  * ip地址Service接口
@@ -58,4 +59,10 @@ public interface ILedgerIpService
      * @return 结果
      */
     public int deleteLedgerIpById(Long id);
+
+    /**
+     * 获取ip地址类型
+     * @return
+     */
+    List<String> getIpTypeOps();
 }

@@ -6,25 +6,21 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 设备详情对象 ledger_dev_details
+ * 操作系统对象 ledger_system
  * 
  * @author disda
- * @date 2024-02-22
+ * @date 2024-02-23
  */
-public class LedgerDevDetails extends BaseEntity
+public class LedgerSystem extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /**  */
+    /** 主键id */
     private Long id;
 
-    /**  */
-    @Excel(name = "设备类型")
-    private String devType;
-
-    /**  */
-    @Excel(name = "设备型号")
-    private String devModel;
+    /** 操作系统 */
+    @Excel(name = "操作系统")
+    private String sysType;
 
     public void setId(Long id) 
     {
@@ -35,31 +31,21 @@ public class LedgerDevDetails extends BaseEntity
     {
         return id;
     }
-    public void setDevType(String devType) 
+    public void setSysType(String sysType) 
     {
-        this.devType = devType;
+        this.sysType = sysType;
     }
 
-    public String getDevType() 
+    public String getSysType() 
     {
-        return devType;
-    }
-    public void setDevModel(String devModel) 
-    {
-        this.devModel = devModel;
-    }
-
-    public String getDevModel() 
-    {
-        return devModel;
+        return sysType;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
-            .append("devType", getDevType())
-            .append("devModel", getDevModel())
+            .append("sysType", getSysType())
             .toString();
     }
 }

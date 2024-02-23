@@ -28,6 +28,9 @@
         <include refid="selectLedgerIpVo"/>
         where id = #{id}
     </select>
+    <select id="getIpTypeOps" resultType="java.lang.String">
+        select DISTINCT type from ledger_ip
+    </select>
 
     <insert id="insertLedgerIp" parameterType="LedgerIp" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_ip

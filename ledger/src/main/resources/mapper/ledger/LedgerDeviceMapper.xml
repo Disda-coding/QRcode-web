@@ -1,42 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.ledger.mapper.LedgerDeviceMapper">
-    
+
     <resultMap type="LedgerDevice" id="LedgerDeviceResult">
-        <result property="id"    column="id"    />
-        <result property="devName"    column="dev_name"    />
-        <result property="devModelId"    column="dev_model_id"    />
-        <result property="opDatetime"    column="op_datetime"    />
-        <result property="description"    column="description"    />
-        <result property="supplyId"    column="supply_id"    />
-        <result property="sysTypeId"    column="sys_type_id"    />
-        <result property="locId"    column="loc_id"    />
+        <result property="id" column="id"/>
+        <result property="devName" column="dev_name"/>
+        <result property="devModelId" column="dev_model_id"/>
+        <result property="opDatetime" column="op_datetime"/>
+        <result property="description" column="description"/>
+        <result property="supplyId" column="supply_id"/>
+        <result property="sysTypeId" column="sys_type_id"/>
+        <result property="locId" column="loc_id"/>
+    </resultMap>
+    <resultMap type="LedgerDeviceVO" id="LedgerDeviceInfp">
+        <result property="id" column="id"/>
+        <result property="devName" column="dev_name"/>
+        <result property="devModelId" column="dev_model_id"/>
+        <result property="sysTypeId" column="sys_type_id"/>
+        <result property="locId" column="loc_id"/>
+        <result property="opDatetime" column="op_datetime"/>
+        <result property="description" column="description"/>
+        <result property="supplyId" column="supply_id"/>
+        <association property="ledgerDevDetails" javaType="com.ruoyi.ledger.domain.LedgerDevDetails">
+            <id column="devModelId" property="id"/>
+            <result property="devType" column="dev_type"/>
+            <result property="devModel" column="dev_model"/>
+        </association>
+        <association property="ledgerPowerSupply" javaType="com.ruoyi.ledger.domain.LedgerPowerSupply">
+            <id column="supplyId" property="id"/>
+            <result property="status" column="status"/>
+        </association>
+        <association property="ledgerSystem" javaType="com.ruoyi.ledger.domain.LedgerSystem">
+            <id column="sysTypeId" property="id"/>
+            <result property="sysType"    column="sys_type"    />
+        </association>
+        <association property="ledgerLocation" javaType="com.ruoyi.ledger.domain.LedgerLocation">
+            <id column="locId" property="id"/>
+            <result property="name"    column="name"    />
+        </association>
     </resultMap>
 
+
     <sql id="selectLedgerDeviceVo">
-        select id, dev_name, dev_model_id, op_datetime, description, supply_id, sys_type_id, loc_id from ledger_device
+        select id,
+               dev_name,
+               dev_model_id,
+               op_datetime,
+               description,
+               supply_id,
+               sys_type_id,
+               loc_id
+        from ledger_device
     </sql>
 
     <select id="selectLedgerDeviceList" parameterType="LedgerDevice" resultMap="LedgerDeviceResult">
         <include refid="selectLedgerDeviceVo"/>
-        <where>  
-            <if test="devName != null  and devName != ''"> and dev_name like concat('%', #{devName}, '%')</if>
-            <if test="devModelId != null "> and dev_model_id = #{devModelId}</if>
-            <if test="params.beginOpDatetime != null and params.beginOpDatetime != '' and params.endOpDatetime != null and params.endOpDatetime != ''"> and op_datetime between #{params.beginOpDatetime} and #{params.endOpDatetime}</if>
-            <if test="description != null  and description != ''"> and description like concat('%', #{description}, '%')</if>
-            <if test="supplyId != null "> and supply_id = #{supplyId}</if>
-            <if test="sysTypeId != null "> and sys_type_id = #{sysTypeId}</if>
-            <if test="locId != null "> and loc_id = #{locId}</if>
+        <where>
+            <if test="devName != null  and devName != ''">and dev_name like concat('%', #{devName}, '%')</if>
+            <if test="devModelId != null ">and dev_model_id = #{devModelId}</if>
+            <if test="params.beginOpDatetime != null and params.beginOpDatetime != '' and params.endOpDatetime != null and params.endOpDatetime != ''">
+                and op_datetime between #{params.beginOpDatetime} and #{params.endOpDatetime}
+            </if>
+            <if test="description != null  and description != ''">and description like concat('%', #{description},
+                '%')
+            </if>
+            <if test="supplyId != null ">and supply_id = #{supplyId}</if>
+            <if test="sysTypeId != null ">and sys_type_id = #{sysTypeId}</if>
+            <if test="locId != null ">and loc_id = #{locId}</if>
         </where>
     </select>
-    
+
     <select id="selectLedgerDeviceById" parameterType="Long" resultMap="LedgerDeviceResult">
         <include refid="selectLedgerDeviceVo"/>
         where id = #{id}
     </select>
-        
+    <select id="getLedgerDeviceInfo" resultType="com.ruoyi.ledger.domain.vo.LedgerDeviceVO">
+
+    </select>
+
     <insert id="insertLedgerDevice" parameterType="LedgerDevice" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_device
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -47,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="supplyId != null">supply_id,</if>
             <if test="sysTypeId != null">sys_type_id,</if>
             <if test="locId != null">loc_id,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="devName != null">#{devName},</if>
             <if test="devModelId != null">#{devModelId},</if>
@@ -56,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="supplyId != null">#{supplyId},</if>
             <if test="sysTypeId != null">#{sysTypeId},</if>
             <if test="locId != null">#{locId},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateLedgerDevice" parameterType="LedgerDevice">
@@ -74,11 +117,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteLedgerDeviceById" parameterType="Long">
-        delete from ledger_device where id = #{id}
+        delete
+        from ledger_device
+        where id = #{id}
     </delete>
 
     <delete id="deleteLedgerDeviceByIds" parameterType="String">
-        delete from ledger_device where id in 
+        delete from ledger_device where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
