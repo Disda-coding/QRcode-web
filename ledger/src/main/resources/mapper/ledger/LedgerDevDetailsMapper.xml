@@ -10,9 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="devModel"    column="dev_model"    />
     </resultMap>
 
+    <resultMap id="DevDetailOps" type="ElementOptions">
+        <id column="value" property="value"/>
+        <result column="label" property="label"/>
+    </resultMap>
+
     <sql id="selectLedgerDevDetailsVo">
         select id, dev_type, dev_model from ledger_dev_details
     </sql>
+
+
 
     <select id="selectLedgerDevDetailsList" parameterType="LedgerDevDetails" resultMap="LedgerDevDetailsResult">
         <include refid="selectLedgerDevDetailsVo"/>
@@ -34,7 +41,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT DISTINCT dev_model
         FROM ledger_dev_details
     </select>
-
+    <select id="getDevOptions" resultMap="DevDetailOps">
+        SELECT DISTINCT dev_name as label, id as value
+        FROM ledger_device;
+    </select>
     <insert id="insertLedgerDevDetails" parameterType="LedgerDevDetails" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_dev_details
         <trim prefix="(" suffix=")" suffixOverrides=",">

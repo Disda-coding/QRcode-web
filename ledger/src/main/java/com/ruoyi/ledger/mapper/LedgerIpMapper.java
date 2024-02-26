@@ -1,7 +1,6 @@
 package com.ruoyi.ledger.mapper;
 
 import com.ruoyi.ledger.domain.LedgerIp;
-import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -63,6 +62,6 @@ public interface LedgerIpMapper
 
     List<String> getIpTypeOps();
 
-    List<ElementOptions> getDevOptions();
+
 
 }

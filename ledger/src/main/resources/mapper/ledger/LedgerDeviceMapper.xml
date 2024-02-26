@@ -14,7 +14,7 @@
         <result property="sysTypeId" column="sys_type_id"/>
         <result property="locId" column="loc_id"/>
     </resultMap>
-    <resultMap type="LedgerDeviceVO" id="LedgerDeviceInfp">
+    <resultMap type="LedgerDeviceVO" id="LedgerDeviceInfo">
         <result property="id" column="id"/>
         <result property="devName" column="dev_name"/>
         <result property="devModelId" column="dev_model_id"/>
@@ -42,6 +42,35 @@
         </association>
     </resultMap>
 
+    <resultMap id="DevOptions" type="ElementOptions">
+        <id column="id" property="value"/>
+        <result column="dev_name" property="label"/>
+    </resultMap>
+
+    <sql id="selectAllDevInfo">
+        SELECT
+            ledger_device.id,
+            dev_name,
+            dev_model_id,
+            op_datetime,
+            description,
+            supply_id,
+            sys_type_id,
+            loc_id,
+            dev_type,
+            dev_model,
+            status,
+            sys_type,
+            name
+        FROM
+            ledger_device
+                LEFT JOIN ledger_dev_details ON ledger_device.dev_model_id = ledger_dev_details.id
+                LEFT JOIN ledger_power_supply ON ledger_device.supply_id = ledger_power_supply.id
+                LEFT JOIN ledger_system on ledger_device.sys_type_id = ledger_system.id
+                LEFT JOIN ledger_location ON ledger_device.loc_id = ledger_location.id
+
+    </sql>
+
 
     <sql id="selectLedgerDeviceVo">
         select id,
@@ -54,9 +83,8 @@
                loc_id
         from ledger_device
     </sql>
-
-    <select id="selectLedgerDeviceList" parameterType="LedgerDevice" resultMap="LedgerDeviceResult">
-        <include refid="selectLedgerDeviceVo"/>
+    <select id="selectLedgerDeviceList" parameterType="LedgerDeviceVo" resultMap="LedgerDeviceInfo">
+        <include refid="selectAllDevInfo"/>
         <where>
             <if test="devName != null  and devName != ''">and dev_name like concat('%', #{devName}, '%')</if>
             <if test="devModelId != null ">and dev_model_id = #{devModelId}</if>
@@ -72,12 +100,34 @@
         </where>
     </select>
 
+<!--    <select id="selectLedgerDeviceList" parameterType="LedgerDevice" resultMap="LedgerDeviceResult">-->
+<!--        <include refid="selectLedgerDeviceVo"/>-->
+<!--        <where>-->
+<!--            <if test="devName != null  and devName != ''">and dev_name like concat('%', #{devName}, '%')</if>-->
+<!--            <if test="devModelId != null ">and dev_model_id = #{devModelId}</if>-->
+<!--            <if test="params.beginOpDatetime != null and params.beginOpDatetime != '' and params.endOpDatetime != null and params.endOpDatetime != ''">-->
+<!--                and op_datetime between #{params.beginOpDatetime} and #{params.endOpDatetime}-->
+<!--            </if>-->
+<!--            <if test="description != null  and description != ''">and description like concat('%', #{description},-->
+<!--                '%')-->
+<!--            </if>-->
+<!--            <if test="supplyId != null ">and supply_id = #{supplyId}</if>-->
+<!--            <if test="sysTypeId != null ">and sys_type_id = #{sysTypeId}</if>-->
+<!--            <if test="locId != null ">and loc_id = #{locId}</if>-->
+<!--        </where>-->
+<!--    </select>-->
+
     <select id="selectLedgerDeviceById" parameterType="Long" resultMap="LedgerDeviceResult">
         <include refid="selectLedgerDeviceVo"/>
         where id = #{id}
     </select>
     <select id="getLedgerDeviceInfo" resultType="com.ruoyi.ledger.domain.vo.LedgerDeviceVO">
 
+    </select>
+
+    <select id="getDevOptions" resultMap="DevOptions">
+        SELECT DISTINCT dev_name , id
+        FROM ledger_device;
     </select>
 
     <insert id="insertLedgerDevice" parameterType="LedgerDevice" useGeneratedKeys="true" keyProperty="id">

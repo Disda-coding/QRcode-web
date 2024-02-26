@@ -2,6 +2,7 @@ package com.ruoyi.ledger.service.impl;
 
 import com.ruoyi.ledger.domain.LedgerIp;
 import com.ruoyi.ledger.domain.vo.ElementOptions;
+import com.ruoyi.ledger.mapper.LedgerDeviceMapper;
 import com.ruoyi.ledger.mapper.LedgerIpMapper;
 import com.ruoyi.ledger.service.ILedgerIpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class LedgerIpServiceImpl implements ILedgerIpService
 {
     @Autowired
     private LedgerIpMapper ledgerIpMapper;
+
+    @Autowired
+    private LedgerDeviceMapper ledgerDeviceMapper;
 
     /**
      * 查询IP地址详情
@@ -104,7 +108,6 @@ public class LedgerIpServiceImpl implements ILedgerIpService
 
     @Override
     public List<ElementOptions> getIpDevOptions() {
-        System.out.println(ledgerIpMapper.getDevOptions());
-        return ledgerIpMapper.getDevOptions();
+        return ledgerDeviceMapper.getDevOptions();
     }
 }
