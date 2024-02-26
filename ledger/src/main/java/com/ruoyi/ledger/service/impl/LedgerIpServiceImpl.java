@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service.impl;
 
 import com.ruoyi.ledger.domain.LedgerIp;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 import com.ruoyi.ledger.mapper.LedgerIpMapper;
 import com.ruoyi.ledger.service.ILedgerIpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     @Override
     public int insertLedgerIp(LedgerIp ledgerIp)
     {
+        ledgerIp.setDevId(Long.valueOf(ledgerIp.getDevice()));
         return ledgerIpMapper.insertLedgerIp(ledgerIp);
     }
 
@@ -65,6 +67,8 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     @Override
     public int updateLedgerIp(LedgerIp ledgerIp)
     {
+        // 将前端传回的device值传给deviceid
+        ledgerIp.setDevId(Long.valueOf(ledgerIp.getDevice()));
         return ledgerIpMapper.updateLedgerIp(ledgerIp);
     }
 
@@ -96,5 +100,11 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     public List<String> getIpTypeOps() {
         List<String> uniqueIpTypeOps = ledgerIpMapper.getIpTypeOps();
         return uniqueIpTypeOps;
+    }
+
+    @Override
+    public List<ElementOptions> getIpDevOptions() {
+        System.out.println(ledgerIpMapper.getDevOptions());
+        return ledgerIpMapper.getDevOptions();
     }
 }

@@ -9,10 +9,16 @@
         <result property="ipAddr"    column="ip_addr"    />
         <result property="type"    column="type"    />
         <result property="devId"    column="dev_id"    />
+        <result property="device" column="dev_name" />
+    </resultMap>
+
+    <resultMap id="ElementOptions" type="ElementOptions">
+        <id column="value" property="value"/>
+        <result column="label" property="label"/>
     </resultMap>
 
     <sql id="selectLedgerIpVo">
-        select id, ip_addr, type, dev_id from ledger_ip
+        select ledger_ip.id as id, ip_addr, type, dev_name,ledger_device.id as did from ledger_ip LEFT JOIN ledger_device on ledger_ip.dev_id=ledger_device.id
     </sql>
 
     <select id="selectLedgerIpList" parameterType="LedgerIp" resultMap="LedgerIpResult">
@@ -26,10 +32,14 @@
 
     <select id="selectLedgerIpById" parameterType="Long" resultMap="LedgerIpResult">
         <include refid="selectLedgerIpVo"/>
-        where id = #{id}
+        where ledger_ip.id = #{id}
     </select>
     <select id="getIpTypeOps" resultType="java.lang.String">
         select DISTINCT type from ledger_ip
+    </select>
+    <select id="getDevOptions" resultType="com.ruoyi.ledger.domain.vo.ElementOptions">
+        SELECT DISTINCT dev_name as label, id as value
+        FROM ledger_device;
     </select>
 
     <insert id="insertLedgerIp" parameterType="LedgerIp" useGeneratedKeys="true" keyProperty="id">

@@ -1,7 +1,5 @@
 package com.ruoyi.ledger.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
@@ -18,6 +16,14 @@ public class LedgerIp extends BaseEntity
     /** 主键id */
     private Long id;
 
+    public String getDevice() {
+        return device;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
     /** ip地址 */
     @Excel(name = "ip地址")
     private String ipAddr;
@@ -26,9 +32,18 @@ public class LedgerIp extends BaseEntity
     @Excel(name = "ip地址类型")
     private String type;
 
+    /**
+     * 给前端显示的，插入，添加时候需要把前端传的值转给devid
+     */
+    @Excel(name = "设备名称")
+    private String device;
+
     /** 设备id */
-    @Excel(name = "设备id")
+
     private Long devId;
+
+
+
 
     public void setId(Long id)
     {
@@ -69,11 +84,12 @@ public class LedgerIp extends BaseEntity
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("ipAddr", getIpAddr())
-                .append("type", getType())
-                .append("devId", getDevId())
-                .toString();
+        return "LedgerIp{" +
+                "id=" + id +
+                ", ipAddr='" + ipAddr + '\'' +
+                ", type='" + type + '\'' +
+                ", device='" + device + '\'' +
+                ", devId=" + devId +
+                '}';
     }
 }

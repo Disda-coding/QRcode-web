@@ -28,12 +28,26 @@ public class LedgerIpController extends BaseController
     @Autowired
     private ILedgerIpService ledgerIpService;
 
+    /**
+     * 查询所有ip类型
+     * @return
+     */
     @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
     @GetMapping(value = "/getIpTypeOps")
     public AjaxResult getIpTypeOps()
     {
         return success(ledgerIpService.getIpTypeOps());
     }
+
+    @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
+    @GetMapping(value = "/getIpDevOptions")
+    public AjaxResult getIpDevOptions()
+    {
+        return success(ledgerIpService.getIpDevOptions());
+    }
+
+
+
 
     /**
      * 查询ip地址列表

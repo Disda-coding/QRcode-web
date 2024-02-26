@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.mapper;
 
 import com.ruoyi.ledger.domain.LedgerIp;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -61,4 +62,7 @@ public interface LedgerIpMapper
     public int deleteLedgerIpByIds(Long[] ids);
 
     List<String> getIpTypeOps();
+
+    List<ElementOptions> getDevOptions();
+
 }

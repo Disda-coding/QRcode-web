@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service;
 
 import com.ruoyi.ledger.domain.LedgerIp;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -65,4 +66,6 @@ public interface ILedgerIpService
      * @return
      */
     List<String> getIpTypeOps();
+
+    List<ElementOptions> getIpDevOptions();
 }
