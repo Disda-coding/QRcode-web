@@ -132,6 +132,11 @@
         SELECT DISTINCT dev_name , id
         FROM ledger_device;
     </select>
+    <select id="getDevList" resultType="java.lang.String" parameterType="Long">
+        SELECT dev_name
+        FROM ledger_device
+        where loc_id = #{id};
+    </select>
 
     <insert id="insertLedgerDevice" parameterType="LedgerDevice" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_device

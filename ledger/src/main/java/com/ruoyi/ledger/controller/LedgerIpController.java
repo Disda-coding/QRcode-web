@@ -39,6 +39,7 @@ public class LedgerIpController extends BaseController
         return success(ledgerIpService.getIpTypeOps());
     }
 
+
     @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
     @GetMapping(value = "/getIpDevOptions")
     public AjaxResult getIpDevOptions()

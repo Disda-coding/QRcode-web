@@ -61,4 +61,6 @@ public interface LedgerLocationMapper
     public int deleteLedgerLocationByIds(Long[] ids);
 
     List<String> getLocationOps();
+
+
 }

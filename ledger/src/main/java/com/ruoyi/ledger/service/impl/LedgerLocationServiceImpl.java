@@ -1,12 +1,16 @@
 package com.ruoyi.ledger.service.impl;
 
 import com.ruoyi.ledger.domain.LedgerLocation;
+import com.ruoyi.ledger.mapper.LedgerDeviceMapper;
 import com.ruoyi.ledger.mapper.LedgerLocationMapper;
 import com.ruoyi.ledger.service.ILedgerLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.ruoyi.ledger.utils.QRCodeGenerator.generateDevQRCode;
 
 /**
  * 机柜地址Service业务层处理
@@ -19,6 +23,8 @@ public class LedgerLocationServiceImpl implements ILedgerLocationService
 {
     @Autowired
     private LedgerLocationMapper ledgerLocationMapper;
+    @Autowired
+    private LedgerDeviceMapper ledgerDeviceMapper;
 
     /**
      * 查询机柜地址
@@ -96,5 +102,17 @@ public class LedgerLocationServiceImpl implements ILedgerLocationService
     public List<String> getLocationOps() {
         List<String> uniqueLocOps = ledgerLocationMapper.getLocationOps();
         return uniqueLocOps;
+    }
+
+    @Override
+    public List<String> getDevList(Long id) {
+        return ledgerDeviceMapper.getDevList(id);
+    }
+
+    @Override
+    public String getLocQRcode(Long id) {
+        List<String> qrinfo = getDevList(id);
+        String name = ledgerLocationMapper.selectLedgerLocationById(id).getName();
+        return generateDevQRCode((ArrayList<String>) qrinfo,name);
     }
 }

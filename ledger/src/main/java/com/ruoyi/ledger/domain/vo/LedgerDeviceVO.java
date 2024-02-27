@@ -76,6 +76,7 @@ public class LedgerDeviceVO extends BaseEntity {
     @Excel(name = "机柜id")
     private Long locId;
 
+    @Excel
     private LedgerLocation ledgerLocation;
     public void setId(Long id)
     {

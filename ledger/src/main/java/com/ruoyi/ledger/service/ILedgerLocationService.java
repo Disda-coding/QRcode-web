@@ -65,4 +65,9 @@ public interface ILedgerLocationService
      * @return
      */
     List<String> getLocationOps();
+
+    List<String> getDevList(Long id);
+
+
+    String getLocQRcode(Long id);
 }

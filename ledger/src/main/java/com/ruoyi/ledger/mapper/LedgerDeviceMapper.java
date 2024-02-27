@@ -65,4 +65,6 @@ public interface LedgerDeviceMapper
     public List<LedgerDeviceVO> getLedgerDeviceInfo();
 
     List<ElementOptions> getDevOptions();
+
+    List<String> getDevList(Long id);
 }

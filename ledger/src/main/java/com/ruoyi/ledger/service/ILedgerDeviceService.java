@@ -60,4 +60,6 @@ public interface ILedgerDeviceService
      * @return 结果
      */
     public int deleteLedgerDeviceById(Long id);
+
 }
+

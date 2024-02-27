@@ -36,6 +36,31 @@ public class LedgerLocationController extends BaseController
         return success(ledgerLocationService.getLocationOps());
     }
 
+
+    /**
+     * 获取机柜下面的设备名称
+     * @return
+     */
+    @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
+    @GetMapping(value = "/getDevList/{id}")
+    public AjaxResult getDevList(@PathVariable("id") Long id)
+    {
+        return success(ledgerLocationService.getDevList(id));
+    }
+    /**
+     * 获取机柜的二维码信息
+     * @return
+     */
+    @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
+    @GetMapping(value = "/getLocQRcode/{id}")
+    public AjaxResult getLocQRcode(@PathVariable("id") Long id)
+    {
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("img", ledgerLocationService.getLocQRcode(id));
+        return ajax;
+
+    }
+
     /**
      * 查询机柜地址列表
      */
