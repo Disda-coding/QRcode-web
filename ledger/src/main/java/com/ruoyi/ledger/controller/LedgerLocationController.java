@@ -79,6 +79,9 @@ public class LedgerLocationController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody LedgerLocation ledgerLocation)
     {
+        if(ledgerLocation.getName()== null||ledgerLocation.getName()=="") {
+            return error("请填写机柜名");
+        }
         return toAjax(ledgerLocationService.insertLedgerLocation(ledgerLocation));
     }
 

@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.service;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerDevice;
+import com.ruoyi.ledger.domain.vo.LedgerDeviceVO;
+
+import java.util.List;
 
 /**
  * 设备信息Service接口
@@ -21,11 +23,11 @@ public interface ILedgerDeviceService
 
     /**
      * 查询设备信息列表
-     * 
-     * @param ledgerDevice 设备信息
+     *
+     * @param ledgerDeviceVO 设备信息
      * @return 设备信息集合
      */
-    public List<LedgerDevice> selectLedgerDeviceList(LedgerDevice ledgerDevice);
+    public List<LedgerDeviceVO> selectLedgerDeviceList(LedgerDeviceVO ledgerDeviceVO);
 
     /**
      * 新增设备信息

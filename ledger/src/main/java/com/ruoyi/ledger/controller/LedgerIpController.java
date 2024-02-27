@@ -92,6 +92,9 @@ public class LedgerIpController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody LedgerIp ledgerIp)
     {
+        if(ledgerIp.getIpAddr()== null||ledgerIp.getIpAddr()=="") {
+            return error("请填写IP地址");
+        }
         return toAjax(ledgerIpService.insertLedgerIp(ledgerIp));
     }
 

@@ -97,6 +97,9 @@
             <if test="supplyId != null ">and supply_id = #{supplyId}</if>
             <if test="sysTypeId != null ">and sys_type_id = #{sysTypeId}</if>
             <if test="locId != null ">and loc_id = #{locId}</if>
+            <if test="ledgerDevDetails != null and ledgerDevDetails.devModel != null">
+                and dev_model = #{ledgerDevDetails.devModel}
+            </if>
         </where>
     </select>
 
@@ -151,6 +154,9 @@
             <if test="locId != null">#{locId},</if>
         </trim>
     </insert>
+
+
+
 
     <update id="updateLedgerDevice" parameterType="LedgerDevice">
         update ledger_device

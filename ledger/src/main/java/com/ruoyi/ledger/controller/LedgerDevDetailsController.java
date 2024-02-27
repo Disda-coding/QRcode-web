@@ -93,6 +93,9 @@ public class LedgerDevDetailsController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody LedgerDevDetails ledgerDevDetails)
     {
+        if(ledgerDevDetails.getDevModel()== null||ledgerDevDetails.getDevModel()=="") {
+            return error("请填写设备型号");
+        }
         return toAjax(ledgerDevDetailsService.insertLedgerDevDetails(ledgerDevDetails));
     }
 

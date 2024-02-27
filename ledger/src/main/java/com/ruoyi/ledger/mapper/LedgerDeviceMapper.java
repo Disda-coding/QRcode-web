@@ -28,7 +28,7 @@ public interface LedgerDeviceMapper
      * @param ledgerDevice 设备信息
      * @return 设备信息集合
      */
-    public List<LedgerDevice> selectLedgerDeviceList(LedgerDevice ledgerDevice);
+    public List<LedgerDeviceVO> selectLedgerDeviceList(LedgerDeviceVO ledgerDevice);
 
     /**
      * 新增设备信息
