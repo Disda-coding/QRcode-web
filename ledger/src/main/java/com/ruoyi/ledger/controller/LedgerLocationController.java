@@ -29,7 +29,7 @@ public class LedgerLocationController extends BaseController
     private ILedgerLocationService ledgerLocationService;
 
 
-    @PreAuthorize("@ss.hasPermi('ledger:location:query')")
+    @PreAuthorize("@ss.hasPermi('ledger:location:list')")
     @GetMapping("/getLocationOps")
     public AjaxResult getLocationOps()
     {

@@ -37,14 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT DISTINCT dev_type
         FROM ledger_dev_details
     </select>
-    <select id="getDevModelOps" resultType="java.lang.String">
-        SELECT DISTINCT dev_model
-        FROM ledger_dev_details
+    <select id="getDevModelOps" resultMap="DevDetailOps">
+        SELECT DISTINCT dev_model as label, id as value
+        FROM ledger_dev_details;
     </select>
-    <select id="getDevOptions" resultMap="DevDetailOps">
-        SELECT DISTINCT dev_name as label, id as value
-        FROM ledger_device;
-    </select>
+
     <insert id="insertLedgerDevDetails" parameterType="LedgerDevDetails" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_dev_details
         <trim prefix="(" suffix=")" suffixOverrides=",">

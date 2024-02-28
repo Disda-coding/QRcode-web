@@ -58,7 +58,7 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     @Override
     public int insertLedgerIp(LedgerIp ledgerIp)
     {
-        ledgerIp.setDevId(Long.valueOf(ledgerIp.getDevice()));
+
         return ledgerIpMapper.insertLedgerIp(ledgerIp);
     }
 
@@ -71,8 +71,6 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     @Override
     public int updateLedgerIp(LedgerIp ledgerIp)
     {
-        // 将前端传回的device值传给deviceid
-        ledgerIp.setDevId(Long.valueOf(ledgerIp.getDevice()));
         return ledgerIpMapper.updateLedgerIp(ledgerIp);
     }
 
@@ -109,6 +107,11 @@ public class LedgerIpServiceImpl implements ILedgerIpService
     @Override
     public List<ElementOptions> getIpDevOptions() {
         return ledgerDeviceMapper.getDevOptions();
+    }
+
+    @Override
+    public List<String> getDevIps(Long id) {
+        return ledgerIpMapper.getDevIps(id);
     }
 
 

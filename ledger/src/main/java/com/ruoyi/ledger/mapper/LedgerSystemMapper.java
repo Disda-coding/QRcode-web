@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.mapper;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerSystem;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+
+import java.util.List;
 
 /**
  * 操作系统Mapper接口
@@ -58,4 +60,6 @@ public interface LedgerSystemMapper
      * @return 结果
      */
     public int deleteLedgerSystemByIds(Long[] ids);
+
+    List<ElementOptions> getSystemOps();
 }

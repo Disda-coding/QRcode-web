@@ -41,6 +41,14 @@ public class LedgerIpController extends BaseController
 
 
     @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
+    @GetMapping(value = "/getDevIps/{id}")
+    public AjaxResult getDevIps(@PathVariable("id") Long id)
+    {
+        return success(ledgerIpService.getDevIps(id));
+    }
+
+
+    @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
     @GetMapping(value = "/getIpDevOptions")
     public AjaxResult getIpDevOptions()
     {
@@ -107,6 +115,7 @@ public class LedgerIpController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody LedgerIp ledgerIp)
     {
+        System.out.println(ledgerIp);
         return toAjax(ledgerIpService.updateLedgerIp(ledgerIp));
     }
 

@@ -1,11 +1,13 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
+import com.ruoyi.ledger.domain.LedgerSystem;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+import com.ruoyi.ledger.mapper.LedgerSystemMapper;
+import com.ruoyi.ledger.service.ILedgerSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerSystemMapper;
-import com.ruoyi.ledger.domain.LedgerSystem;
-import com.ruoyi.ledger.service.ILedgerSystemService;
+
+import java.util.List;
 
 /**
  * 操作系统Service业务层处理
@@ -89,5 +91,10 @@ public class LedgerSystemServiceImpl implements ILedgerSystemService
     public int deleteLedgerSystemById(Long id)
     {
         return ledgerSystemMapper.deleteLedgerSystemById(id);
+    }
+
+    @Override
+    public List<ElementOptions> getSystemOps() {
+        return ledgerSystemMapper.getSystemOps();
     }
 }

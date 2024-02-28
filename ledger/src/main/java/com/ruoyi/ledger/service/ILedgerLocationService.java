@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service;
 
 import com.ruoyi.ledger.domain.LedgerLocation;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -62,9 +63,10 @@ public interface ILedgerLocationService
 
     /**
      * 获取机柜信息
+     *
      * @return
      */
-    List<String> getLocationOps();
+    List<ElementOptions> getLocationOps();
 
     List<String> getDevList(Long id);
 

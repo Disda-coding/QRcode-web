@@ -17,12 +17,30 @@ import java.util.List;
 public class LedgerDeviceVO extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
     @Override
     public String toString() {
         return "LedgerDeviceVO{" +
                 "id=" + id +
                 ", devName='" + devName + '\'' +
                 ", devModelId=" + devModelId +
+                ", sn='" + sn + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
                 ", ledgerIpList=" + ledgerIpList +
                 ", ledgerDevDetails=" + ledgerDevDetails +
                 ", opDatetime=" + opDatetime +
@@ -46,6 +64,14 @@ public class LedgerDeviceVO extends BaseEntity {
     /** 设备型号id */
     @Excel(name = "设备型号id")
     private Long devModelId;
+
+    /** 序列号 */
+    @Excel(name = "序列号")
+    private String sn;
+
+    /** 简称 */
+    @Excel(name = "简称")
+    private String abbreviation;
 
     private List<LedgerIp> ledgerIpList;
 

@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="sysType"    column="sys_type"    />
     </resultMap>
+    <resultMap id="LedgerSystemOps" type="ElementOptions">
+        <id column="value" property="value"/>
+        <result column="label" property="label"/>
+    </resultMap>
 
     <sql id="selectLedgerSystemVo">
         select id, sys_type from ledger_system
@@ -24,7 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectLedgerSystemVo"/>
         where id = #{id}
     </select>
-        
+    <select id="getSystemOps" resultMap="LedgerSystemOps">
+        select sys_type as label, id as value
+        from ledger_system
+    </select>
+
     <insert id="insertLedgerSystem" parameterType="LedgerSystem">
         insert into ledger_system
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -15,11 +15,11 @@ public interface ILedgerDeviceService
 {
     /**
      * 查询设备信息
-     * 
+     *
      * @param id 设备信息主键
      * @return 设备信息
      */
-    public LedgerDevice selectLedgerDeviceById(Long id);
+    public LedgerDeviceVO selectLedgerDeviceById(Long id);
 
     /**
      * 查询设备信息列表

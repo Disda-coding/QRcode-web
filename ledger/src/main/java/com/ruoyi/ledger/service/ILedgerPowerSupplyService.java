@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.service;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerPowerSupply;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+
+import java.util.List;
 
 /**
  * 电源详情Service接口
@@ -58,4 +60,6 @@ public interface ILedgerPowerSupplyService
      * @return 结果
      */
     public int deleteLedgerPowerSupplyById(Long id);
+
+    List<ElementOptions> getPowerSupplyOps();
 }

@@ -1,11 +1,13 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
+import com.ruoyi.ledger.domain.LedgerPowerSupply;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+import com.ruoyi.ledger.mapper.LedgerPowerSupplyMapper;
+import com.ruoyi.ledger.service.ILedgerPowerSupplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerPowerSupplyMapper;
-import com.ruoyi.ledger.domain.LedgerPowerSupply;
-import com.ruoyi.ledger.service.ILedgerPowerSupplyService;
+
+import java.util.List;
 
 /**
  * 电源详情Service业务层处理
@@ -89,5 +91,10 @@ public class LedgerPowerSupplyServiceImpl implements ILedgerPowerSupplyService
     public int deleteLedgerPowerSupplyById(Long id)
     {
         return ledgerPowerSupplyMapper.deleteLedgerPowerSupplyById(id);
+    }
+
+    @Override
+    public List<ElementOptions> getPowerSupplyOps() {
+        return ledgerPowerSupplyMapper.getPowerSupplyOps();
     }
 }

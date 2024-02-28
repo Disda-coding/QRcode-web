@@ -72,6 +72,9 @@ public class LedgerDeviceController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody LedgerDevice ledgerDevice)
     {
+        if(ledgerDevice.getDevName()== null||ledgerDevice.getDevName()=="") {
+            return error("请填写设备名称");
+        }
         return toAjax(ledgerDeviceService.insertLedgerDevice(ledgerDevice));
     }
 

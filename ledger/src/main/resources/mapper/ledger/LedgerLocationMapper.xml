@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
     </resultMap>
+    <resultMap id="LedgerLocationOps" type="ElementOptions">
+        <id column="value" property="value"/>
+        <result column="label" property="label"/>
+    </resultMap>
 
     <sql id="selectLedgerLocationVo">
         select id, name from ledger_location
@@ -24,8 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectLedgerLocationVo"/>
         where id = #{id}
     </select>
-    <select id="getLocationOps" resultType="java.lang.String">
-        select distinct name
+    <select id="getLocationOps" resultMap="LedgerLocationOps">
+        select distinct name as label,id as value
         from ledger_location
     </select>
 

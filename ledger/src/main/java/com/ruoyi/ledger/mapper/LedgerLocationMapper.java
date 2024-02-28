@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.mapper;
 
 import com.ruoyi.ledger.domain.LedgerLocation;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public interface LedgerLocationMapper
      */
     public int deleteLedgerLocationByIds(Long[] ids);
 
-    List<String> getLocationOps();
+    List<ElementOptions> getLocationOps();
 
 
 }

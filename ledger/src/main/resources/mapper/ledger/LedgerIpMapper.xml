@@ -8,7 +8,7 @@
         <result property="id"    column="id"    />
         <result property="ipAddr"    column="ip_addr"    />
         <result property="type"    column="type"    />
-        <result property="devId"    column="dev_id"    />
+        <result property="devId"    column="did"    />
         <result property="device" column="dev_name" />
     </resultMap>
 
@@ -33,6 +33,10 @@
     </select>
     <select id="getIpTypeOps" resultType="java.lang.String">
         select DISTINCT type from ledger_ip
+    </select>
+    <select id="getDevIps" resultType="java.lang.String">
+        select ip_addr from ledger_ip
+        where dev_id = #{id}
     </select>
 
 

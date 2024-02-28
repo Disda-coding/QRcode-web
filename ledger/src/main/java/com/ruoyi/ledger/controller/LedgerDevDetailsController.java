@@ -43,12 +43,14 @@ public class LedgerDevDetailsController extends BaseController
      * 查询所有设备型号列表值
      * @return
      */
-    @PreAuthorize("@ss.hasPermi('ledger:deviceDetails:query')")
+    @PreAuthorize("@ss.hasPermi('ledger:deviceDetails:list')")
     @GetMapping(value = "/getDevModelOps")
     public AjaxResult getDevModelOps()
     {
         return success(ledgerDevDetailsService.getDevModelOps());
     }
+
+
     /**
      * 查询设备详情列表
      */

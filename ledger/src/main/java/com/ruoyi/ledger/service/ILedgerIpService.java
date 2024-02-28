@@ -69,4 +69,5 @@ public interface ILedgerIpService
 
     List<ElementOptions> getIpDevOptions();
 
+    List<String> getDevIps(Long id);
 }

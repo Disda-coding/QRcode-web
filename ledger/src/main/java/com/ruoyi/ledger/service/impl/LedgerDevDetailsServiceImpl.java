@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service.impl;
 
 import com.ruoyi.ledger.domain.LedgerDevDetails;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 import com.ruoyi.ledger.mapper.LedgerDevDetailsMapper;
 import com.ruoyi.ledger.service.ILedgerDevDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,8 +100,8 @@ public class LedgerDevDetailsServiceImpl implements ILedgerDevDetailsService
     }
 
     @Override
-    public List<String> getDevModelOps() {
-        List<String> uniqueDevModel = ledgerDevDetailsMapper.getDevModelOps();
+    public List<ElementOptions> getDevModelOps() {
+        List<ElementOptions> uniqueDevModel = ledgerDevDetailsMapper.getDevModelOps();
         return uniqueDevModel;
     }
 }

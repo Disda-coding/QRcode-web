@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.service;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerSystem;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+
+import java.util.List;
 
 /**
  * 操作系统Service接口
@@ -58,4 +60,6 @@ public interface ILedgerSystemService
      * @return 结果
      */
     public int deleteLedgerSystemById(Long id);
+
+    List<ElementOptions> getSystemOps();
 }

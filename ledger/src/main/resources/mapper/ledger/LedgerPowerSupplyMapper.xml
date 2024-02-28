@@ -8,7 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="status"    column="status"    />
     </resultMap>
-
+    <resultMap id="LedgerPowerSupplyOps" type="ElementOptions">
+        <id column="value" property="value"/>
+        <result column="label" property="label"/>
+    </resultMap>
     <sql id="selectLedgerPowerSupplyVo">
         select id, status from ledger_power_supply
     </sql>
@@ -24,7 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectLedgerPowerSupplyVo"/>
         where id = #{id}
     </select>
-        
+    <select id="getPowerSupplyOps" resultMap="LedgerPowerSupplyOps">
+       select DISTINCT status as label,id as value
+       from ledger_power_supply
+    </select>
+
     <insert id="insertLedgerPowerSupply" parameterType="LedgerPowerSupply" useGeneratedKeys="true" keyProperty="id">
         insert into ledger_power_supply
         <trim prefix="(" suffix=")" suffixOverrides=",">

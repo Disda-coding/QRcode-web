@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service;
 
 import com.ruoyi.ledger.domain.LedgerDevDetails;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
 
@@ -67,7 +68,8 @@ public interface ILedgerDevDetailsService
     List<String> getDevTypeOps();
     /**
      * 获取设备型号的列表
+     *
      * @return
      */
-    List<String> getDevModelOps();
+    List<ElementOptions> getDevModelOps();
 }

@@ -1,13 +1,13 @@
 package com.ruoyi.ledger.service.impl;
 
-import java.util.List;
-
+import com.ruoyi.ledger.domain.LedgerDevice;
 import com.ruoyi.ledger.domain.vo.LedgerDeviceVO;
+import com.ruoyi.ledger.mapper.LedgerDeviceMapper;
+import com.ruoyi.ledger.service.ILedgerDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ledger.mapper.LedgerDeviceMapper;
-import com.ruoyi.ledger.domain.LedgerDevice;
-import com.ruoyi.ledger.service.ILedgerDeviceService;
+
+import java.util.List;
 
 /**
  * 设备信息Service业务层处理
@@ -23,12 +23,12 @@ public class LedgerDeviceServiceImpl implements ILedgerDeviceService
 
     /**
      * 查询设备信息
-     * 
+     *
      * @param id 设备信息主键
      * @return 设备信息
      */
     @Override
-    public LedgerDevice selectLedgerDeviceById(Long id)
+    public LedgerDeviceVO selectLedgerDeviceById(Long id)
     {
         return ledgerDeviceMapper.selectLedgerDeviceById(id);
     }

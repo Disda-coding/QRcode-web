@@ -62,8 +62,8 @@ public interface LedgerDevDetailsMapper {
 
     public List<String> getDevTypeOps();
 
-    public List<String> getDevModelOps();
+    public List<ElementOptions> getDevModelOps();
 
 
-    public List<ElementOptions> getDevDetailsOptions();
+
 }

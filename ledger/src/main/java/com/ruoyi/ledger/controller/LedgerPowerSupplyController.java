@@ -17,24 +17,29 @@ import java.util.List;
 
 /**
  * 电源详情Controller
- * 
+ *
  * @author disda
  * @date 2024-02-22
  */
 @RestController
 @RequestMapping("/ledger/supply")
-public class LedgerPowerSupplyController extends BaseController
-{
+public class LedgerPowerSupplyController extends BaseController {
     @Autowired
     private ILedgerPowerSupplyService ledgerPowerSupplyService;
+
+
+    @PreAuthorize("@ss.hasPermi('ledger:supply:list')")
+    @GetMapping("/getPowerSupplyOps")
+    public AjaxResult getPowerSupplyOps() {
+        return success(ledgerPowerSupplyService.getPowerSupplyOps());
+    }
 
     /**
      * 查询电源详情列表
      */
     @PreAuthorize("@ss.hasPermi('ledger:supply:list')")
     @GetMapping("/list")
-    public TableDataInfo list(LedgerPowerSupply ledgerPowerSupply)
-    {
+    public TableDataInfo list(LedgerPowerSupply ledgerPowerSupply) {
         startPage();
         List<LedgerPowerSupply> list = ledgerPowerSupplyService.selectLedgerPowerSupplyList(ledgerPowerSupply);
         return getDataTable(list);
@@ -46,8 +51,7 @@ public class LedgerPowerSupplyController extends BaseController
     @PreAuthorize("@ss.hasPermi('ledger:supply:export')")
     @Log(title = "电源详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, LedgerPowerSupply ledgerPowerSupply)
-    {
+    public void export(HttpServletResponse response, LedgerPowerSupply ledgerPowerSupply) {
         List<LedgerPowerSupply> list = ledgerPowerSupplyService.selectLedgerPowerSupplyList(ledgerPowerSupply);
         ExcelUtil<LedgerPowerSupply> util = new ExcelUtil<LedgerPowerSupply>(LedgerPowerSupply.class);
         util.exportExcel(response, list, "电源详情数据");
@@ -58,8 +62,7 @@ public class LedgerPowerSupplyController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('ledger:supply:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id)
-    {
+    public AjaxResult getInfo(@PathVariable("id") Long id) {
         return success(ledgerPowerSupplyService.selectLedgerPowerSupplyById(id));
     }
 
@@ -69,9 +72,8 @@ public class LedgerPowerSupplyController extends BaseController
     @PreAuthorize("@ss.hasPermi('ledger:supply:add')")
     @Log(title = "电源详情", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody LedgerPowerSupply ledgerPowerSupply)
-    {
-        if(ledgerPowerSupply.getStatus()== null||ledgerPowerSupply.getStatus()=="") {
+    public AjaxResult add(@RequestBody LedgerPowerSupply ledgerPowerSupply) {
+        if (ledgerPowerSupply.getStatus() == null || ledgerPowerSupply.getStatus() == "") {
             return error("请填写电源情况");
         }
         return toAjax(ledgerPowerSupplyService.insertLedgerPowerSupply(ledgerPowerSupply));
@@ -83,8 +85,7 @@ public class LedgerPowerSupplyController extends BaseController
     @PreAuthorize("@ss.hasPermi('ledger:supply:edit')")
     @Log(title = "电源详情", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody LedgerPowerSupply ledgerPowerSupply)
-    {
+    public AjaxResult edit(@RequestBody LedgerPowerSupply ledgerPowerSupply) {
         return toAjax(ledgerPowerSupplyService.updateLedgerPowerSupply(ledgerPowerSupply));
     }
 
@@ -93,9 +94,8 @@ public class LedgerPowerSupplyController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('ledger:supply:remove')")
     @Log(title = "电源详情", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids)
-    {
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(ledgerPowerSupplyService.deleteLedgerPowerSupplyByIds(ids));
     }
 }

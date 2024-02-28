@@ -1,7 +1,9 @@
 package com.ruoyi.ledger.mapper;
 
-import java.util.List;
 import com.ruoyi.ledger.domain.LedgerPowerSupply;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
+
+import java.util.List;
 
 /**
  * 电源详情Mapper接口
@@ -58,4 +60,6 @@ public interface LedgerPowerSupplyMapper
      * @return 结果
      */
     public int deleteLedgerPowerSupplyByIds(Long[] ids);
+
+    List<ElementOptions> getPowerSupplyOps();
 }

@@ -63,6 +63,13 @@ public class LedgerSystemController extends BaseController
         return success(ledgerSystemService.selectLedgerSystemById(id));
     }
 
+    @PreAuthorize("@ss.hasPermi('ledger:sys:list')")
+    @GetMapping("/getSystemOps")
+    public AjaxResult getSystemOps()
+    {
+        return success(ledgerSystemService.getSystemOps());
+    }
+
     /**
      * 新增操作系统
      */

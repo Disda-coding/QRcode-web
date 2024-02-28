@@ -1,6 +1,8 @@
 package com.ruoyi.ledger.service.impl;
 
+import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.ledger.domain.LedgerLocation;
+import com.ruoyi.ledger.domain.vo.ElementOptions;
 import com.ruoyi.ledger.mapper.LedgerDeviceMapper;
 import com.ruoyi.ledger.mapper.LedgerLocationMapper;
 import com.ruoyi.ledger.service.ILedgerLocationService;
@@ -99,8 +101,8 @@ public class LedgerLocationServiceImpl implements ILedgerLocationService
     }
 
     @Override
-    public List<String> getLocationOps() {
-        List<String> uniqueLocOps = ledgerLocationMapper.getLocationOps();
+    public List<ElementOptions> getLocationOps() {
+        List<ElementOptions> uniqueLocOps = ledgerLocationMapper.getLocationOps();
         return uniqueLocOps;
     }
 
@@ -113,6 +115,9 @@ public class LedgerLocationServiceImpl implements ILedgerLocationService
     public String getLocQRcode(Long id) {
         List<String> qrinfo = getDevList(id);
         String name = ledgerLocationMapper.selectLedgerLocationById(id).getName();
+        if (qrinfo==null ||qrinfo.size() == 0){
+            throw new ServiceException("该机柜下暂无设备");
+        }
         return generateDevQRCode((ArrayList<String>) qrinfo,name);
     }
 }
