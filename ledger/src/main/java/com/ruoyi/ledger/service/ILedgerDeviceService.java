@@ -1,6 +1,7 @@
 package com.ruoyi.ledger.service;
 
 import com.ruoyi.ledger.domain.LedgerDevice;
+import com.ruoyi.ledger.domain.vo.LedgerDeviceExcel;
 import com.ruoyi.ledger.domain.vo.LedgerDeviceVO;
 
 import java.util.List;
@@ -61,5 +62,6 @@ public interface ILedgerDeviceService
      */
     public int deleteLedgerDeviceById(Long id);
 
+    List<LedgerDeviceExcel> generateDevExcel(LedgerDeviceVO ledgerDeviceVO);
 }
 

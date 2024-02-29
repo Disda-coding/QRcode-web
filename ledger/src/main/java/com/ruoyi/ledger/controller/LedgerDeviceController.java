@@ -7,6 +7,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.ledger.domain.LedgerDevice;
+import com.ruoyi.ledger.domain.vo.LedgerDeviceExcel;
 import com.ruoyi.ledger.domain.vo.LedgerDeviceVO;
 import com.ruoyi.ledger.service.ILedgerDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,8 @@ public class LedgerDeviceController extends BaseController
     @PostMapping("/export")
     public void export(HttpServletResponse response, LedgerDeviceVO ledgerDeviceVO)
     {
-        List<LedgerDeviceVO> list = ledgerDeviceService.selectLedgerDeviceList(ledgerDeviceVO);
-        ExcelUtil<LedgerDeviceVO> util = new ExcelUtil<LedgerDeviceVO>(LedgerDeviceVO.class);
+        List<LedgerDeviceExcel> list = ledgerDeviceService.generateDevExcel(ledgerDeviceVO);
+        ExcelUtil<LedgerDeviceExcel> util = new ExcelUtil<LedgerDeviceExcel>(LedgerDeviceExcel.class);
         util.exportExcel(response, list, "设备信息数据");
     }
 

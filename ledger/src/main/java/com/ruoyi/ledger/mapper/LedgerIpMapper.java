@@ -64,4 +64,6 @@ public interface LedgerIpMapper
 
 
     List<String> getDevIps(Long id);
+
+    List<String> showAllIps();
 }

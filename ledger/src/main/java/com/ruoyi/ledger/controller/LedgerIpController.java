@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * ip地址Controller
@@ -39,6 +41,13 @@ public class LedgerIpController extends BaseController
         return success(ledgerIpService.getIpTypeOps());
     }
 
+    @PreAuthorize("@ss.hasAnyPermi({'ledger:ip:add','ledger:ip:edit'})")
+    @GetMapping("/getAllIps")
+    public AjaxResult getAllIps(@RequestParam("ipAddr")String ipAddr,@RequestParam("netmask")String netmask)
+    {
+        Map<String, Objects> ipLists = ledgerIpService.getAllIps(ipAddr,netmask);
+        return success(ipLists);
+    }
 
     @PreAuthorize("@ss.hasPermi('ledger:ip:query')")
     @GetMapping(value = "/getDevIps/{id}")

@@ -4,6 +4,8 @@ import com.ruoyi.ledger.domain.LedgerIp;
 import com.ruoyi.ledger.domain.vo.ElementOptions;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * ip地址Service接口
@@ -70,4 +72,6 @@ public interface ILedgerIpService
     List<ElementOptions> getIpDevOptions();
 
     List<String> getDevIps(Long id);
+
+    Map<String, Objects> getAllIps(String ipAddr, String netmask);
 }

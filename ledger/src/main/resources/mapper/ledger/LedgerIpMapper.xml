@@ -38,6 +38,9 @@
         select ip_addr from ledger_ip
         where dev_id = #{id}
     </select>
+    <select id="showAllIps" resultType="java.lang.String">
+        select ip_addr from ledger_ip
+    </select>
 
 
     <insert id="insertLedgerIp" parameterType="LedgerIp" useGeneratedKeys="true" keyProperty="id">
